@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{margin: 0;padding: 0;}
+        html,body {
+            height: 100%;
+        }
+        canvas {
+            width: 100%;
+            height: 100%;
+            background-color: black; 
+        }
+    </style>
+</head>
+<body>
+    <canvas></canvas>
+    <script>// 写js的地方
+        // js获取canvas元素 
+        var canvas = document.querySelector('canvas');
+        var ctx = canvas.getContext('2d');
+        var winWidth = window.innerWidth;// 获取浏览器宽度
+        var winHeigth = window.innerHeight;// 获取浏览器高度
+        var fontSize = 32;// 保存文字大小
+        var fontNum = winWidth / fontSize | 0;
+        var arrIndex = [];// 保存Y坐标数组
+
+        for (var i = 0; i < fontNum; i++) {
+            arrIndex[i] = 1;
+        }
+
+        canvas.width = winWidth;
+        canvas.height = winHeigth;
+
+        !function draw() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, winWidth, winHeigth);// 起点坐标 终点坐标 
+            // 绘制同一排
+            for (var i = 0; i < fontNum; i++) {
+                var str = (Math.random() * 36 | 0).toString(36)[Math.random() > 0.5 ? 'toLocaleLowerCase' : 'toLocaleUpperCase']();
+                ctx.font = `${fontSize}px 黑体 bold`;// 文字样式
+                ctx.fillStyle = 'aquamarine'// 文字颜色
+                ctx.fillText(str, fontSize * i, fontSize * arrIndex[i]++);// 三个参数：写的文字 坐标X 坐标Y
+                if (arrIndex[i] * fontSize > winHeigth && Math.random() > 0.99) {// 如果超出了
+                    arrIndex[i] = 0;
+                 }
+            }
+            setTimeout(draw, 30);// 定时器 函数名称 时间
+        }()
+        
+  
+    </script>
+</body>
+</html>
