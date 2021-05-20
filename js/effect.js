@@ -214,10 +214,11 @@ $('document').ready(function(){
 	
 	$('#story').click(function(){
 		$(this).fadeOut('slow');
-		$('.cake').fadeOut('fast').promise().done(function(){
+		/*$('.cake').fadeOut('fast').promise().done(function(){
 			$('.cake-cover').css('margin-top', '0');
-			$('.message').fadeIn('slow');
-		});
+		});*/
+		$('.message').fadeIn('slow');
+
 
 		for (var i = 1; i <= 8; i++)
 		$('#b'+i+i).fadeOut('slow').delay(3000).promise().done(function(){
